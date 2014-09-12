@@ -1,0 +1,9 @@
+{
+  "name": "tweet",
+  "version": "0.0.0",
+  "description": "A Twitter client",
+  "author": "Ara Pehlivanian <ara.pehlivanian@gmail.com>",
+  "devDependencies": {
+    "grunt": "~0.4.5"
+  }
+}
