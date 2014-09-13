@@ -26,12 +26,13 @@ module.exports = function(grunt) {
         src: 'src/**/*.js',
         options: {
           specs: 'spec/*-spec.js',
-          helpers: 'spec/*-helper.js'
+          helpers: 'spec/*-helper.js',
+          template: require('grunt-template-jasmine-requirejs')
         }
       }
     },
     jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js', 'spec/**/*.js'],
+      files: ['Gruntfile.js', 'keys.js', 'src/**/*.js', 'spec/**/*.js'],
       options: {
         // options here to override JSHint defaults
         globals: {
