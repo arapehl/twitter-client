@@ -1,0 +1,4 @@
+exports.token = '';
+exports.secret = '';
+exports.consumerKey = '';
+exports.consumerSecret = '';
