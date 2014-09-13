@@ -1,15 +1,15 @@
 (function () {
   'use strict';
 
-  describe('Tweet', function () {
-    var tweet;
+  describe('Twitter', function () {
+    var twitter;
 
     beforeEach(function () {
-      tweet = new Tweet();
+      twitter = new Twitter();
     });
 
     it('should exist', function () {
-      expect(typeof tweet).toEqual('object');
+      expect(typeof twitter).toEqual('object');
     });
   });
 }());

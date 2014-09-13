@@ -1,7 +1,7 @@
 (function (root) {
   'use strict';
 
-  root.Tweet = function () {
+  root.Twitter = function () {
   };
 
 }(this));
