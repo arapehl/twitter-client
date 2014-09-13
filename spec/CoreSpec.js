@@ -1,13 +1,15 @@
-'use strict';
+(function () {
+  'use strict';
 
-describe('Tweet', function () {
-  var tweet;
+  describe('Tweet', function () {
+    var tweet;
 
-  beforeEach(function () {
-    tweet = new Tweet();
+    beforeEach(function () {
+      tweet = new Tweet();
+    });
+
+    it('should exist', function () {
+      expect(typeof tweet).toEqual('object');
+    });
   });
-
-  it('should exist', function () {
-    expect(typeof tweet).toEqual('object');
-  });
-});
+}());
