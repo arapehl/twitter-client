@@ -1,6 +1,6 @@
 // Put your keys here and rename the file to keys.js
 
 exports.token = '';
-exports.secret = '';
-exports.consumerKey = '';
-exports.consumerSecret = '';
+exports.tokenSecret = '';
+exports.apiKey = '';
+exports.apiSecret = '';
