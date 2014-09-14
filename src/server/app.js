@@ -1,16 +1,15 @@
 (function () {
   'use strict';
 
-  var keys = require('./keys');
+  var oAuthConfig = require('./oauth_config');
   var OAuth = require('oauth').OAuth,
       oauth = new OAuth(
         "https://api.twitter.com/oauth/request_token",
         "https://api.twitter.com/oauth/access_token",
-        keys.api_key,
-        keys.api_secret,
+        oAuthConfig.api_key,
+        oAuthConfig.api_secret,
         "1.0",
-        //null,
-        "http://aras-twitter-client.com/auth/twitter/callback",
+        oAuthConfig.callback,
         "HMAC-SHA1"
       );
   var express = require('express');
@@ -19,6 +18,15 @@
 
   app.use(session({secret: 'ugh', cookie: {maxAge: 60000}}));
 
+
+  app.get('/', function (req, res) {
+    // Redirect to auth if not logged in
+    if (!req.session.oauth) {
+      res.redirect('/auth/twitter');
+    } else {
+      res.send('Hello, you');
+    }
+  });
 
   app.get('/auth/twitter', function(req, res) {
    
@@ -32,7 +40,6 @@
           token: oauth_token,
           token_secret: oauth_token_secret
         };
-        console.log(req.session.oauth);
         res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token);
       }
     });
@@ -57,9 +64,10 @@
           else {
             req.session.oauth.access_token = oauth_access_token;
             req.session.oauth.access_token_secret = oauth_access_token_secret;
-            console.log(results, req.session.oauth);
+      console.log('********************************************************************************');
+      console.log(req);
             res.send("Authentication Successful");
-            // res.redirect('/'); // You might actually want to redirect!
+            //res.redirect('/'); // You might actually want to redirect!
           }
         }
       );
