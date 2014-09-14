@@ -15,6 +15,7 @@
   "dependencies": {
     "oauth": "~0.9.12",
     "express": "~4.9.0",
-    "express-session": "~1.8.1"
+    "express-session": "~1.8.1",
+    "requirejs": "~2.1.15"
   }
 }

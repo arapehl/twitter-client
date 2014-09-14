@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     },
     jasmine: {
       twitter: {
-        src: 'src/fe/**/*.js',
+        src: 'src/**/*.js',
         options: {
           specs: 'spec/*-spec.js',
           helpers: 'spec/*-helper.js',

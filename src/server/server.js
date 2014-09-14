@@ -1,3 +1,4 @@
+var requirejs = require('requirejs');
 var keys = require('./keys');
 var util = require('util');
 var OAuth = require('oauth').OAuth,
