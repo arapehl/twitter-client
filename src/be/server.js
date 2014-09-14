@@ -1,7 +1,7 @@
 var keys = require('./keys');
 var util = require('util');
-var OAuth = require('oauth').OAuth
-  , oauth = new OAuth(
+var OAuth = require('oauth').OAuth,
+    oauth = new OAuth(
       "https://api.twitter.com/oauth/request_token",
       "https://api.twitter.com/oauth/access_token",
       keys.api_key,
@@ -33,7 +33,7 @@ app.get('/auth/twitter', function(req, res) {
         token_secret: oauth_token_secret
       };
       console.log(req.session.oauth);
-      res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)
+      res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token);
     }
   });
  
