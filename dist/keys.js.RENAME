@@ -1,6 +1,0 @@
-// Put your keys here and rename the file to keys.js
-
-exports.token = '';
-exports.tokenSecret = '';
-exports.apiKey = '';
-exports.apiSecret = '';

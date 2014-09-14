@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       }
     },
     jasmine: {
-      pivotal: {
+      twitter: {
         src: 'src/**/*.js',
         options: {
           specs: 'spec/*-spec.js',
