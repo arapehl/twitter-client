@@ -39,7 +39,7 @@
       saveUninitialized: false, // dprecated, forcing off
       secret: 'supercalifragilisticexpialidocious',
       cookie: {
-        maxAge: 60000
+        maxAge: 24 * 60 * 60 * 1000
       }
     })
   );
