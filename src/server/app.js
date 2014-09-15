@@ -2,11 +2,6 @@
   'use strict';
 
   /*
-   * Defaults
-   */
-  var appName = "Ara's Twitter Client";
-
-  /*
    * Set up OAuth
    */
   var oAuthConfig = require('./oauth_config');
@@ -27,6 +22,7 @@
   var express = require('express');
   var session = require('express-session');
   var app = express();
+  app.set('title', 'Ara’s Twitter Client');
   app.set('views', './views');
   app.set('view engine', 'jade');
   app.engine('jade', require('jade').__express);
@@ -47,7 +43,7 @@
    */
   app.get('/', function (req, res) {
     res.render('index', {
-      title: appName
+      title: app.get('title')
     });
     // Redirect to auth if not logged in
     /*
