@@ -104,14 +104,13 @@
             req.session.oauth.access_token_secret = oauth_access_token_secret;
             req.session.screen_name = results.screen_name;
             req.session.user_id = results.user_id;
-            //res.send("Authentication Successful");
-            res.redirect('/'); // You might actually want to redirect!
+            res.redirect('/');
           }
         }
       );
     }
     else {
-      res.redirect('/login'); // Redirect to login page
+      res.redirect('/signin');
     }
    
   });
