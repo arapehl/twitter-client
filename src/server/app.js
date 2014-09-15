@@ -1,9 +1,17 @@
 (function () {
   'use strict';
 
+  /*
+   * Defaults
+   */
+  var appName = "Ara's Twitter Client";
+
+  /*
+   * Set up OAuth
+   */
   var oAuthConfig = require('./oauth_config');
-  var OAuth = require('oauth').OAuth,
-      oauth = new OAuth(
+  var OAuth = require('oauth').OAuth;
+  var oauth = new OAuth(
         "https://api.twitter.com/oauth/request_token",
         "https://api.twitter.com/oauth/access_token",
         oAuthConfig.api_key,
@@ -12,23 +20,46 @@
         oAuthConfig.callback,
         "HMAC-SHA1"
       );
+
+  /*
+   * Set up Express with the Jade templating engine
+   */
   var express = require('express');
   var session = require('express-session');
   var app = express();
+  app.set('views', './views');
+  app.set('view engine', 'jade');
+  app.engine('jade', require('jade').__express);
 
+
+  /*
+   * Set up middleware
+   */
   app.use(session({secret: 'ugh', cookie: {maxAge: 60000}}));
+  app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
 
 
+  /*
+   * Set up routes
+   */
   app.get('/', function (req, res) {
+    res.render('index', {
+      title: appName
+    });
     // Redirect to auth if not logged in
+    /*
     if (!req.session.oauth) {
       res.redirect('/auth/twitter');
     } else {
       res.send('Hello, you');
     }
+    */
   });
 
-  app.get('/auth/twitter', function(req, res) {
+  app.get('/signin', function(req, res) {
    
     oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results) {
       if (error) {
@@ -64,8 +95,6 @@
           else {
             req.session.oauth.access_token = oauth_access_token;
             req.session.oauth.access_token_secret = oauth_access_token_secret;
-      console.log('********************************************************************************');
-      console.log(req);
             res.send("Authentication Successful");
             //res.redirect('/'); // You might actually want to redirect!
           }
@@ -78,5 +107,7 @@
    
   });
 
-  app.listen(80);
+  app.listen(80, function () {
+    console.log('Listening on port %d', this.address().port);
+  });
 }());
