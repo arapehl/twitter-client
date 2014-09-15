@@ -23,7 +23,7 @@
   var session = require('express-session');
   var app = express();
   app.set('title', 'Ara’s Twitter Client');
-  app.set('views', './views');
+  app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.engine('jade', require('jade').__express);
 
