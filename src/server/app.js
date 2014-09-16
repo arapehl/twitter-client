@@ -1,6 +1,9 @@
 (function () {
   'use strict';
 
+  var https = require('https');
+  var util = require('util');
+
   /*
    * Set up OAuth
    */
@@ -60,10 +63,29 @@
       authorized: false
     };
     if (req.session && req.session.oauth && req.session.oauth.access_token) {
+      console.log('getting stream');
+      console.log(req.session.oauth.access_token);
+      console.log(req.session.oauth.access_token_secret);
       data.authorized = true;
-      data.screen_name = req.session.screen_name
+      data.screen_name = req.session.screen_name;
+      oauth.get(
+        'https://stream.twitter.com/1.1/statuses/filter.json?delimited=length&track=twitterapi',
+        req.session.oauth.access_token,
+        req.session.oauth.access_token_secret,
+        function (e, data, res) {
+          console.log('stream?');
+          if (e) console.error(e);
+          console.log(util.inspect(data));
+          res.on('data', function (d) {
+            console.log('d', d);
+          });
+          res.on('error', function (e) {
+            console.error(e);
+          });
+        });
     }
     res.render('index', data);
+
   });
 
   app.get('/signin', function(req, res) {
