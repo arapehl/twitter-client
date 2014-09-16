@@ -115,6 +115,11 @@
    
   });
 
+  app.get('/signout', function (req, res, next) {
+    req.session.destroy();
+    res.redirect('/');
+  });
+
   app.listen(80, function () {
     console.log('Listening on port %d', this.address().port);
   });
