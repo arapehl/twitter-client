@@ -25,11 +25,12 @@ module.exports = function(grunt) {
       twitter: {
         src: 'src/client/**/*.js',
         options: {
-          specs: 'spec/*-spec.js',
-          helpers: 'spec/*-helper.js',
-          template: require('grunt-template-jasmine-requirejs')
+          specs: 'spec/client/**/*-spec.js',
+          helpers: 'spec/client/**/*-helper.js',
         }
       }
+    },
+    jasmine_node: {
     },
     jshint: {
       files: ['Gruntfile.js', 'src/**/*.js', 'spec/**/*.js'],
