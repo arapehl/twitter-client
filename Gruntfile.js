@@ -30,7 +30,13 @@ module.exports = function(grunt) {
         }
       }
     },
-    jasmine_node: {
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['spec/server/**/*-spec.js']
+      }
     },
     jshint: {
       files: ['Gruntfile.js', 'src/**/*.js', 'spec/**/*.js'],
@@ -46,7 +52,7 @@ module.exports = function(grunt) {
     },
     watch: {
       files: ['<%= jshint.files %>'],
-      tasks: ['jshint', 'jasmine']
+      tasks: ['jshint', 'mochaTest', 'jasmine']
     }
   });
 
@@ -55,9 +61,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-mocha-test');
 
-  grunt.registerTask('test', ['jshint', 'jasmine']);
+  grunt.registerTask('test', ['jshint', 'mochaTest', 'jasmine']);
 
-  grunt.registerTask('default', ['jshint', 'jasmine', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'mochaTest', 'jasmine', 'concat', 'uglify']);
 
 };
