@@ -8,16 +8,7 @@
    * Set up OAuth
    */
   var oAuthConfig = require('./oauth_config');
-  var OAuth = require('oauth').OAuth;
-  var oauth = new OAuth(
-        "https://api.twitter.com/oauth/request_token",
-        "https://api.twitter.com/oauth/access_token",
-        oAuthConfig.api_key,
-        oAuthConfig.api_secret,
-        "1.0",
-        oAuthConfig.callback,
-        "HMAC-SHA1"
-      );
+  var oauth = require('./auth')(oAuthConfig.api_key, oAuthConfig.api_secret, oAuthConfig.callback);
 
   /*
    * Set up Express with the Jade templating engine
