@@ -16,7 +16,7 @@ describe('Auth', function () {
     oauth = null;
   });
 
-  it('should be a function', function () {
+  it('should export a function', function () {
     expect(typeof auth).to.equal('function');
   });
 
