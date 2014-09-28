@@ -15,7 +15,7 @@ module.exports = {
   },
 
   'signin': function (req, res, next) {
-    var oAuthConfig = require('./oauth_config');
+    var oAuthConfig = require('./secrets').oauth;
     var oauth = require('./auth')(oAuthConfig.api_key, oAuthConfig.api_secret, oAuthConfig.callback);
     oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results) {
       if (error) {
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   'requestCallback': function(req, res, next) {
-    var oAuthConfig = require('./oauth_config');
+    var oAuthConfig = require('./secrets').oauth;
     var oauth = require('./auth')(oAuthConfig.api_key, oAuthConfig.api_secret, oAuthConfig.callback);
 
     if (req.session.oauth_token && req.session.oauth_token_secret) {

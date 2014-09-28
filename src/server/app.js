@@ -10,6 +10,7 @@
    */
   var express = require('express');
   var session = require('express-session');
+  var secrets = require('./secrets');
   var app = express();
   app.set('title', 'Ara’s Twitter Client');
   app.set('views', __dirname + '/views');
@@ -26,7 +27,7 @@
     session({
       resave: false, // deprecated, forcing off
       saveUninitialized: false, // dprecated, forcing off
-      secret: 'supercalifragilisticexpialidocious',
+      secret: secrets.session.secret,
       cookie: {
         maxAge: 24 * 60 * 60 * 1000
       }
