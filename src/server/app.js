@@ -2,41 +2,37 @@
   'use strict';
 
   var https = require('https');
+  var express = require('express');
+  var session = require('express-session');
   var appConfig = require('./app_config');
+  var secrets = require('./secrets');
   var routeHandlers = require('./route_handlers');
 
   /*
    * Set up Express with the Jade templating engine
    */
-  var express = require('express');
-  var session = require('express-session');
-  var secrets = require('./secrets');
   var app = express();
-  app.set('title', 'Ara’s Twitter Client');
+  app.set('title', appConfig.projectName);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.engine('jade', require('jade').__express);
 
 
   /*
-   * Set up middleware
+   * Configure middleware
    */
 
   // Session handling
   app.use(
     session({
       resave: false, // deprecated, forcing off
-      saveUninitialized: false, // dprecated, forcing off
+      saveUninitialized: false, // deprecated, forcing off
       secret: secrets.session.secret,
       cookie: {
         maxAge: 24 * 60 * 60 * 1000
       }
     })
   );
-
-  app.use(function (req, res, next) {
-    next();
-  });
 
   // Errors
   app.use(function (err, req, res, next) {
@@ -55,7 +51,7 @@
 
 
   /*
-   * Listen on port 80
+   * Start listening
    */
   app.listen(appConfig.listenPort, function () {
     console.log('Listening on port %d', this.address().port);
