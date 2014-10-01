@@ -1,6 +1,16 @@
 # Ara’s Twitter Client
 
-The purpose of this project is to learn the necessary bits in order to create a Twitter client. It's a work in progress.
+The purpose of this project is to build a Twitter client and learn all the bits necessary to do that. It's a work in progress.
 
 ## Current status
-I've got the authentication set up. Currently getting tests and the build process working before moving on to the API for the client.
+[![Build Status](https://travis-ci.org/arapehl/twitter-client.svg?branch=master)](https://travis-ci.org/arapehl/twitter-client)
+
+## Done
+- 3-legged authorization
+
+## Doing
+- Server side tests (mocking requires)
+
+## Doing next
+- Proxy API connecting Twitter and the client
+
