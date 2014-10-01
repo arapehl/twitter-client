@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "A Twitter client",
   "author": "Ara Pehlivanian <ara.pehlivanian@gmail.com>",
+  "scripts": {
+    "test": "grunt travis --verbose"
+  },
   "devDependencies": {
     "chai": "^1.9.1",
     "grunt": "~0.4.5",
